@@ -1,0 +1,22 @@
+     set serveroutput on;
+     declare
+     input varchar(20):='18-03-2003';
+     l_output int;
+     begin
+     loop
+     dbms_output.put_line(' ');
+     dbms_output.put_line('l_input='||l_input);
+     l_output:= 0;
+     for i in 1 .. length(l_input) loop
+     if substr(l_input,i,1) between '0' and '9' then
+     l_output:= l_output + to_number(substr(l_input,i,1));
+     end if;
+     end loop;
+     dbms_output.put_line('l_output='||l_output);
+     exit when l_output<10;
+     l_input := to_char(l_output);
+     end loop;
+     dbms_output.put_line(' ');
+     dbms_output.put_line('lucky='||l_output);
+     end;
+     /
